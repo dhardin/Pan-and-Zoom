@@ -9,6 +9,7 @@
     <script type="text/javascript" src="lib/jquery-ui.min.js"></script>
     <script type="text/javascript" src="lib/html2canvas.min.js"></script>
     <script type="text/javascript" src="lib/foundation/js/foundation.min.js"></script>
+    <script type="text/javascript" src="js/pan-zoom.js"></script>
 </head>
 
 <body>
@@ -81,55 +82,16 @@
             </div>
         </div>
     </div>
-    <div id="pan-zoom">
-        <div id="draggable"></div>
+    <div class="pan-zoom">
+        <div class="draggable"></div>
     </div>
     <script type="text/javascript">
-     var $panzoom = $('#pan-zoom'),
-            $draggable = $('#draggable'),
-            $window = $(window),
-            $document = $(document);
+   
     $(document).ready(function(e) {
-       
+
         $(document).foundation();
-        $draggable.draggable({
-            containment: "#pan-zoom",
-            scroll: false
-        });
-        html2canvas(document.body, {
-            onrendered: function(canvas) {
-                var ctx = canvas.getContext("2d"),
-                    dataUrl = canvas.toDataURL(),
-                    $document = $(document),
-                    height = $document.height() * .1,
-                    width = $document.width() * .1;
+        $('.pan-zoom').panzoom();
 
-
-                //$('#pan-zoom').append($img).css({width: width, height, height}).show();
-                $panzoom.css({
-                    'background-image': 'url("' + dataUrl + '")'
-                }).show();
-                updatePanZoom();
-            }
-        });
-    });
-
-    function updatePanZoom() {
-        $draggable.css({
-            height: $window.height()/$document.height() * $panzoom.height(),
-            width: $window.width()/$document.width() * $panzoom.width(),
-            top: $window.scrollTop()/$document.height() * $panzoom.height(),
-            left: $window.scrollLeft()/$document.width() * $panzoom.width()
-        });
-    }
-
-    $window.on('scroll', function (e) {
-       updatePanZoom();
-    });
-
-    $draggable.on('drag', function(e, ui){
-        $window.scrollTop(ui.position.top * $document.height()/$panzoom.height())
-                .scrollLeft(ui.position.left * $document.width()/$panzoom.width());
     });
 
     </script>
