@@ -59,7 +59,8 @@
                 var dataUrl = canvas.toDataURL();
                 //$('#pan-zoom').append($img).css({width: width, height, height}).show();
                 $(that).css({
-                    'background-image': 'url("' + dataUrl + '")'
+                    'background-image': 'url("' + dataUrl + '")',
+                    height: that.$document.height() * .15
                 }).show();
                 $.fn.panzoom.updatePanZoom.apply(that);
             }
@@ -74,6 +75,8 @@
             top: this.$window.scrollTop() / this.$document.height() * $this.height(),
             left: this.$window.scrollLeft() / this.$document.width() * $this.width()
         });
+
+       
     };
 
 })($);

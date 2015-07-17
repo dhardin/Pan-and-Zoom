@@ -1,16 +1,20 @@
 
+.pan-zoom-container {
+    height: 100%;
+}
 .pan-zoom {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    border: 2px solid #000;
- 
+    right: 0;
+    top: 0;
+    border: 1px solid #555;
     display: none;
     height: 15%;
-    width: 15%;
+    width: 10%;
      background-size: contain;
      background-repeat: no-repeat;
-     background-color: #ddd;
+    opacity : 0.5;
+    overflow:hidden;
+
 }
 
 .draggable {
