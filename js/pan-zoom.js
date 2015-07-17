@@ -5,7 +5,8 @@
         // Extend our default options with those provided.
         // Note that the first argument to extend is an empty
         // object – this is to keep from overriding our "defaults" object.
-        var opts = $.extend({}, $.fn.panzoom.defaults, options);
+        var opts = $.extend({}, $.fn.panzoom.defaults, options),
+        selector = this.selector;
 
         // Our plugin implementation code goes here.
 
@@ -15,6 +16,7 @@
             this.$draggable = $('.draggable');
             this.$window = $(window);
             this.$document = $(document);
+            this.selector = selector;
 
             this.$window.on('scroll', function(e) {
                 $.fn.panzoom.updatePanZoom.apply(that);
@@ -37,9 +39,8 @@
     };
 
     $.fn.panzoom.init = function() {
-        var selector = this.selector;
         this.$draggable.draggable({
-            containment: selector,
+            containment: this.selector,
             scroll: false
         });
         $.fn.panzoom.updatePanZoomImage.apply(this);
